@@ -57,6 +57,23 @@ Baza se kreira iz uključenih migracija. Početni podaci nisu uključeni.
 
 Projekat je lokalna portfolio demonstracija. Autentikacija, korisničke uloge i automatizovani testovi još nisu implementirani. Za demonstraciju koristite izmišljene podatke gostiju.
 
+## Izgled aplikacije
+
+### Početna stranica
+
+![Početna stranica](screenshots/home.png)
+
+### Upravljanje smještajem
+
+![Smještaj](screenshots/accommodations.png)
+
+### Pregled rezervacija
+
+![Rezervacije](screenshots/reservations.png)
+
+### Provjera zauzetosti termina
+
+![Validacija rezervacije](screenshots/validation.png)
 ## Autorica
 
 Ilhana Gabela
