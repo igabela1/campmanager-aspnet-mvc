@@ -1,0 +1,65 @@
+﻿@model CampManager.Models.Accommodation
+
+@{
+    ViewData["Title"] = "Uredi smještaj";
+}
+
+<h1>Uredi smještaj</h1>
+
+<div class="card">
+    <div class="card-body">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <form asp-controller="Accommodations"
+              asp-action="Edit"
+              asp-route-id="@Model.Id"
+              method="post">
+
+            <input asp-for="Id" type="hidden" />
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Naziv</label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Capacity" class="form-label">
+                    Broj osoba
+                </label>
+                <input asp-for="Capacity"
+                       type="number"
+                       min="1"
+                       max="50"
+                       class="form-control"
+                       required />
+                <span asp-validation-for="Capacity"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PricePerNight" class="form-label">
+                    Cijena po noći (KM)
+                </label>
+                <input asp-for="PricePerNight"
+                       type="text"
+                       inputmode="decimal"
+                       class="form-control"
+                       required />
+                <span asp-validation-for="PricePerNight"
+                      class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Sačuvaj izmjene
+            </button>
+
+            <a asp-controller="Accommodations"
+               asp-action="Index"
+               class="btn btn-secondary">
+                Odustani
+            </a>
+        </form>
+    </div>
+</div>

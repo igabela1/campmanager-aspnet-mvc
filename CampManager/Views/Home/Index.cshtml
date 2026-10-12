@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Početna";
+}
+
+<div class="py-5">
+    <h1 class="display-4 fw-bold">CampManager</h1>
+
+    <p class="lead">
+        Upravljanje smještajem i rezervacijama kampa Miris Ljeta.
+    </p>
+
+    <p class="text-muted">
+        Evidencija smještaja, pregled rezervacija i provjera
+        dostupnosti termina na jednom mjestu.
+    </p>
+
+    <div class="d-flex flex-wrap gap-3 mt-4">
+        <a asp-controller="Accommodations"
+           asp-action="Index"
+           class="btn btn-primary btn-lg">
+            Upravljaj smještajem
+        </a>
+
+        <a asp-controller="Reservations"
+           asp-action="Index"
+           class="btn btn-outline-primary btn-lg">
+            Pregledaj rezervacije
+        </a>
+    </div>
+</div>

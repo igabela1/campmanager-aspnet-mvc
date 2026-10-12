@@ -1,0 +1,77 @@
+﻿@model List<CampManager.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Rezervacije";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Rezervacije</h1>
+
+    <a asp-action="Create" class="btn btn-primary">
+        Nova rezervacija
+    </a>
+</div>
+
+@if (TempData["Success"] is string message)
+{
+    <div class="alert alert-success">@message</div>
+}
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">
+        Nema rezervacija. Dodaj prvu rezervaciju.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Gost</th>
+                    <th>Smještaj</th>
+                    <th>Dolazak</th>
+                    <th>Odlazak</th>
+                    <th>Osobe</th>
+                    <th>Ukupno</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <strong>@item.GuestName</strong>
+                            <div class="small text-muted">
+                                @item.GuestEmail
+                            </div>
+                        </td>
+                        <td>@item.Accommodation?.Name</td>
+                        <td>@item.CheckIn.ToString("dd.MM.yyyy.")</td>
+                        <td>@item.CheckOut.ToString("dd.MM.yyyy.")</td>
+                        <td>@item.NumberOfGuests</td>
+                        <td>@item.TotalPrice.ToString("0.00") KM</td>
+                        <td>
+                            <form asp-action="Delete"
+                                  method="post"
+                                  onsubmit="return confirm('Obrisati ovu rezervaciju?');">
+
+                                <input type="hidden"
+                                       name="id"
+                                       value="@item.Id" />
+
+                                <button type="submit"
+                                        class="btn btn-danger btn-sm">
+                                    Obriši
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,100 @@
+﻿@model CampManager.Models.Reservation
+
+@{
+    ViewData["Title"] = "Nova rezervacija";
+}
+
+<h1>Nova rezervacija</h1>
+
+<div class="card">
+    <div class="card-body">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <form asp-controller="Reservations"
+              asp-action="Create"
+              method="post">
+
+            <div class="mb-3">
+                <label asp-for="GuestName" class="form-label">
+                    Ime i prezime gosta
+                </label>
+                <input asp-for="GuestName"
+                       class="form-control"
+                       maxlength="100"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="GuestEmail" class="form-label">
+                    Email gosta
+                </label>
+                <input asp-for="GuestEmail"
+                       type="email"
+                       class="form-control"
+                       maxlength="200"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AccommodationId" class="form-label">
+                    Smještaj
+                </label>
+                <select asp-for="AccommodationId"
+                        asp-items="ViewBag.Accommodations"
+                        class="form-select"
+                        required>
+                    <option value="">Izaberi smještaj</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CheckIn" class="form-label">
+                        Datum dolaska
+                    </label>
+                    <input asp-for="CheckIn"
+                           type="date"
+                           asp-format="{0:yyyy-MM-dd}"
+                           class="form-control"
+                           required />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CheckOut" class="form-label">
+                        Datum odlaska
+                    </label>
+                    <input asp-for="CheckOut"
+                           type="date"
+                           asp-format="{0:yyyy-MM-dd}"
+                           class="form-control"
+                           required />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="NumberOfGuests" class="form-label">
+                    Broj gostiju
+                </label>
+                <input asp-for="NumberOfGuests"
+                       type="number"
+                       min="1"
+                       max="50"
+                       class="form-control"
+                       required />
+            </div>
+
+            <p class="text-muted">
+                Ukupna cijena računa se prema broju noćenja
+                i cijeni izabranog smještaja.
+            </p>
+
+            <button type="submit" class="btn btn-primary">
+                Sačuvaj rezervaciju
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Odustani
+            </a>
+        </form>
+    </div>
+</div>
